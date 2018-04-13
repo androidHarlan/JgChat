@@ -68,4 +68,6 @@ JChat 同时具备好友模式和无好友模式：
 * [JMessage Android API Docs](https://docs.jiguang.cn/jmessage/client/im_android_api_docs/)
 ### 百度地图报错原因tried Java_com_baidu_platform_comjni_engine_JNIEngine_initClass and Java_com
 - 可以参考https://blog.csdn.net/timmy_zzh/article/details/52515674
+### 如果有那个地方点击没有效果错误
+- 看是否使用错误的EventBus
 
