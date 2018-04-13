@@ -75,6 +75,7 @@ public class AppsAdapter extends BaseAdapter {
 
                     if (appBean.getFuncName().equals("图片")) {
                         Log.e("backinfo", "进入图片");
+
                         EventBus.getDefault().post(new ImageEvent(JGApplication.IMAGE_MESSAGE));
                         // EventBus.getDefault().post(1);
                     } else if (appBean.getFuncName().equals("拍摄")) {
