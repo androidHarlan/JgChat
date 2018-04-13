@@ -66,3 +66,6 @@ JChat 同时具备好友模式和无好友模式：
 * [JMessage Android 集成指南](https://docs.jiguang.cn/jmessage/client/jmessage_android_guide/)
 * [JMessage Android 开发指南](https://docs.jiguang.cn/jmessage/client/im_sdk_android/)
 * [JMessage Android API Docs](https://docs.jiguang.cn/jmessage/client/im_android_api_docs/)
+### 百度地图报错原因tried Java_com_baidu_platform_comjni_engine_JNIEngine_initClass and Java_com
+- 可以参考https://blog.csdn.net/timmy_zzh/article/details/52515674
+
