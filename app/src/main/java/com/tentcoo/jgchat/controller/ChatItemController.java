@@ -78,6 +78,11 @@ import cn.jpush.im.android.api.model.Message;
 import cn.jpush.im.android.api.model.UserInfo;
 import cn.jpush.im.android.api.options.MessageSendingOptions;
 import cn.jpush.im.api.BasicCallback;
+import com.tentcoo.jgchat.adapter.ChattingListAdapter.ViewHolder;
+
+
+
+
 
 public class ChatItemController {
 
@@ -136,7 +141,7 @@ public class ChatItemController {
         });
     }
 
-    public void handleBusinessCard(final Message msg, final ChattingListAdapter.ViewHolder holder, int position) {
+    public void handleBusinessCard(final Message msg, final ViewHolder holder, int position) {
         final TextContent[] textContent = {(TextContent) msg.getContent()};
         final String[] mUserName = {textContent[0].getStringExtra("userName")};
         final String mAppKey = textContent[0].getStringExtra("appKey");
@@ -243,9 +248,9 @@ public class ChatItemController {
     private class BusinessCard implements View.OnClickListener {
         private String userName;
         private String appKey;
-        private ChattingListAdapter.ViewHolder mHolder;
+        private ViewHolder mHolder;
 
-        public BusinessCard(String name, String appKey, ChattingListAdapter.ViewHolder holder) {
+        public BusinessCard(String name, String appKey, ViewHolder holder) {
             this.userName = name;
             this.appKey = appKey;
             this.mHolder = holder;
@@ -278,7 +283,7 @@ public class ChatItemController {
         }
     }
 
-    public void handleTextMsg(final Message msg, final ChattingListAdapter.ViewHolder holder, int position) {
+    public void handleTextMsg(final Message msg, final ViewHolder holder, int position) {
         final String content = ((TextContent) msg.getContent()).getText();
         SimpleCommonUtils.spannableEmoticonFilter(holder.txtContent, content);
         holder.txtContent.setText(content);
@@ -340,7 +345,7 @@ public class ChatItemController {
     }
 
     // 处理图片
-    public void handleImgMsg(final Message msg, final ChattingListAdapter.ViewHolder holder, final int position) {
+    public void handleImgMsg(final Message msg, final ViewHolder holder, final int position) {
         final ImageContent imgContent = (ImageContent) msg.getContent();
         final String jiguang = imgContent.getStringExtra("jiguang");
         // 先拿本地缩略图
@@ -480,7 +485,7 @@ public class ChatItemController {
         }
     }
 
-    private void sendingImage(final Message msg, final ChattingListAdapter.ViewHolder holder) {
+    private void sendingImage(final Message msg, final ViewHolder holder) {
         holder.picture.setAlpha(0.75f);
         holder.sendingIv.setVisibility(View.VISIBLE);
         holder.sendingIv.startAnimation(mSendingAnim);
@@ -533,7 +538,7 @@ public class ChatItemController {
         }
     }
 
-    public void handleVoiceMsg(final Message msg, final ChattingListAdapter.ViewHolder holder, final int position) {
+    public void handleVoiceMsg(final Message msg, final ViewHolder holder, final int position) {
         final VoiceContent content = (VoiceContent) msg.getContent();
         final MessageDirect msgDirect = msg.getDirect();
         int length = content.getDuration();
@@ -631,7 +636,7 @@ public class ChatItemController {
         holder.txtContent.setOnClickListener(new BtnOrTxtListener(position, holder));
     }
 
-    public void handleLocationMsg(final Message msg, final ChattingListAdapter.ViewHolder holder, int position) {
+    public void handleLocationMsg(final Message msg, final ViewHolder holder, int position) {
         final LocationContent content = (LocationContent) msg.getContent();
         String path = content.getStringExtra("path");
 
@@ -743,7 +748,7 @@ public class ChatItemController {
     }
 
     //正在发送文字或语音
-    private void sendingTextOrVoice(final ChattingListAdapter.ViewHolder holder, final Message msg) {
+    private void sendingTextOrVoice(final ViewHolder holder, final Message msg) {
         holder.text_receipt.setVisibility(View.GONE);
         holder.resend.setVisibility(View.GONE);
         holder.sendingIv.setVisibility(View.VISIBLE);
@@ -773,7 +778,7 @@ public class ChatItemController {
     }
 
     //小视频
-    public void handleVideo(final Message msg, final ChattingListAdapter.ViewHolder holder, int position) {
+    public void handleVideo(final Message msg, final ViewHolder holder, int position) {
         FileContent fileContent = (FileContent) msg.getContent();
         String videoPath = fileContent.getLocalPath();
         if (videoPath != null) {
@@ -880,7 +885,7 @@ public class ChatItemController {
     }
 
 
-    public void handleFileMsg(final Message msg, final ChattingListAdapter.ViewHolder holder, int position) {
+    public void handleFileMsg(final Message msg, final ViewHolder holder, int position) {
         final FileContent content = (FileContent) msg.getContent();
         if (holder.txtContent != null) {
             holder.txtContent.setText(content.getFileName());
@@ -1060,7 +1065,7 @@ public class ChatItemController {
     }
 
 
-    public void handleGroupChangeMsg(Message msg, ChattingListAdapter.ViewHolder holder) {
+    public void handleGroupChangeMsg(Message msg, ViewHolder holder) {
         String content = ((EventNotificationContent) msg.getContent()).getEventText();
         EventNotificationContent.EventNotificationType type = ((EventNotificationContent) msg
                 .getContent()).getEventNotificationType();
@@ -1076,14 +1081,14 @@ public class ChatItemController {
         }
     }
 
-    public void handlePromptMsg(Message msg, ChattingListAdapter.ViewHolder holder) {
+    public void handlePromptMsg(Message msg, ViewHolder holder) {
         String promptText = ((PromptContent) msg.getContent()).getPromptText();
         holder.groupChange.setText(promptText);
         holder.groupChange.setVisibility(View.VISIBLE);
         holder.msgTime.setVisibility(View.GONE);
     }
 
-    public void handleCustomMsg(Message msg, ChattingListAdapter.ViewHolder holder) {
+    public void handleCustomMsg(Message msg, ViewHolder holder) {
         CustomContent content = (CustomContent) msg.getContent();
         Boolean isBlackListHint = content.getBooleanValue("blackList");
         Boolean notFriendFlag = content.getBooleanValue("notFriend");
@@ -1106,9 +1111,9 @@ public class ChatItemController {
     public class BtnOrTxtListener implements View.OnClickListener {
 
         private int position;
-        private ChattingListAdapter.ViewHolder holder;
+        private ViewHolder holder;
 
-        public BtnOrTxtListener(int index, ChattingListAdapter.ViewHolder viewHolder) {
+        public BtnOrTxtListener(int index, ViewHolder viewHolder) {
             this.position = index;
             this.holder = viewHolder;
         }
@@ -1245,7 +1250,7 @@ public class ChatItemController {
     }
 
 
-    public void playVoice(final int position, final ChattingListAdapter.ViewHolder holder, final boolean isSender) {
+    public void playVoice(final int position, final ViewHolder holder, final boolean isSender) {
         // 记录播放录音的位置
         mPosition = position;
         Message msg = mMsgList.get(position);

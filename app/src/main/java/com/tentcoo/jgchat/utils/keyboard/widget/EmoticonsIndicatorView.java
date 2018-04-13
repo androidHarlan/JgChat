@@ -14,6 +14,7 @@ import com.tentcoo.jgchat.utils.keyboard.utils.EmoticonsKeyboardUtils;
 import java.util.ArrayList;
 
 
+
 public class EmoticonsIndicatorView extends LinearLayout {
 
     private static final int MARGIN_LEFT = 4;

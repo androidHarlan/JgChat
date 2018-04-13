@@ -1,6 +1,5 @@
 package com.tentcoo.jgchat.application;
 
-
 import android.content.Context;
 import android.support.multidex.MultiDex;
 
@@ -25,6 +24,7 @@ import cn.jpush.im.android.api.JMessageClient;
 import cn.jpush.im.android.api.model.GroupInfo;
 import cn.jpush.im.android.api.model.Message;
 import cn.jpush.im.android.api.model.UserInfo;
+
 
 /**
  * Created by ${chenyn} on 2017/2/16.

@@ -1,7 +1,5 @@
 package com.tentcoo.jgchat.adapter;
 
-
-import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
@@ -10,8 +8,10 @@ import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
+import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -55,6 +55,7 @@ import cn.jpush.im.android.api.model.Message;
 import cn.jpush.im.android.api.model.UserInfo;
 import cn.jpush.im.android.api.options.MessageSendingOptions;
 import cn.jpush.im.api.BasicCallback;
+
 
 public class ChattingListAdapter extends BaseAdapter {
 
@@ -676,7 +677,7 @@ public class ChattingListAdapter extends BaseAdapter {
                                 @Override
                                 public void gotResult(int i, String s, List<ReceiptDetails> list) {
                                     if (i == 0) {
-                                        for (ReceiptDetails receipt : list) {
+                                        for (GetReceiptDetailsCallback.ReceiptDetails receipt : list) {
                                             JGApplication.alreadyRead.clear();
                                             JGApplication.unRead.clear();
                                             List<UserInfo> alreadyRead = receipt.getReceiptList();
@@ -753,6 +754,7 @@ public class ChattingListAdapter extends BaseAdapter {
     }
 
     private void resendImage(final ViewHolder holder, Message msg) {
+        Log.e("backinfo","点击图片");
         holder.sendingIv.setVisibility(View.VISIBLE);
         holder.sendingIv.startAnimation(mController.mSendingAnim);
         holder.picture.setAlpha(0.75f);
@@ -815,13 +817,12 @@ public class ChattingListAdapter extends BaseAdapter {
             });
             if (!msg.isSendCompleteCallbackExists()) {
                 msg.setOnSendCompleteCallback(new BasicCallback() {
-                    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
                     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
                     @Override
                     public void gotResult(final int status, String desc) {
                         holder.progressTv.setVisibility(View.GONE);
                         //此方法是api21才添加的如果低版本会报错找不到此方法.升级api或者使用ContextCompat.getDrawable
-                        holder.contentLl.setBackground(mContext.getDrawable(R.drawable.jmui_msg_send_bg));
+                        holder.contentLl.setBackground(ContextCompat.getDrawable(mContext,R.drawable.jmui_msg_send_bg));
                         if (status != 0) {
                             HandleResponseCode.onHandle(mContext, status, false);
                             holder.resend.setVisibility(View.VISIBLE);

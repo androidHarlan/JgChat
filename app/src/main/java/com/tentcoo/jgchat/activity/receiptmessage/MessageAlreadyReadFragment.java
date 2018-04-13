@@ -1,5 +1,6 @@
 package com.tentcoo.jgchat.activity.receiptmessage;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -21,6 +22,7 @@ import cn.jpush.im.android.api.model.UserInfo;
  * Created by ${chenyn} on 2017/9/5.
  */
 
+@SuppressLint("ValidFragment")
 public class MessageAlreadyReadFragment extends BaseFragment {
     private Activity mContext;
     private View mRootView;
@@ -30,8 +32,6 @@ public class MessageAlreadyReadFragment extends BaseFragment {
 
     public MessageAlreadyReadFragment(long groupIdForReceipt) {
         this.mGroupId = groupIdForReceipt;
-    }
-    public MessageAlreadyReadFragment() {
     }
 
     @Override

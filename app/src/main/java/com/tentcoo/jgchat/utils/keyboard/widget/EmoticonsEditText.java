@@ -3,6 +3,7 @@ package com.tentcoo.jgchat.utils.keyboard.widget;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.KeyEvent;
+import android.widget.TextView;
 
 import com.tentcoo.jgchat.utils.RichEditText;
 import com.tentcoo.jgchat.utils.keyboard.interfaces.EmoticonFilter;
@@ -56,7 +57,7 @@ public class EmoticonsEditText extends RichEditText {
     }
 
     @Override
-    public void setText(CharSequence text, BufferType type) {
+    public void setText(CharSequence text, TextView.BufferType type) {
         try {
             super.setText(text, type);
         } catch (ArrayIndexOutOfBoundsException e) {

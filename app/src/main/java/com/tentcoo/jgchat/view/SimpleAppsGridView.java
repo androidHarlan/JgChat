@@ -3,10 +3,13 @@ package com.tentcoo.jgchat.view;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import com.tentcoo.jgchat.R;
 import com.tentcoo.jgchat.adapter.AppsAdapter;
@@ -30,7 +33,7 @@ public class SimpleAppsGridView extends RelativeLayout {
     }
 
     protected void init() {
-        GridView gv_apps = (GridView) view.findViewById(R.id.gv_apps);
+        GridView gv_apps = view.findViewById(R.id.gv_apps);
         ArrayList<AppBean> mAppBeanList = new ArrayList<>();
         mAppBeanList.add(new AppBean(R.mipmap.icon_photo, "图片"));
         mAppBeanList.add(new AppBean(R.mipmap.icon_camera, "拍摄"));
@@ -41,5 +44,7 @@ public class SimpleAppsGridView extends RelativeLayout {
 //        mAppBeanList.add(new AppBean(R.mipmap.icon_voice, "语音"));
         AppsAdapter adapter = new AppsAdapter(getContext(), mAppBeanList);
         gv_apps.setAdapter(adapter);
+
+
     }
 }

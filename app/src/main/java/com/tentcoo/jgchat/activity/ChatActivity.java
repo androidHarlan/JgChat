@@ -17,13 +17,13 @@ import android.support.v4.content.ContextCompat;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AbsListView;
 import android.widget.Toast;
-
 
 import com.sj.emoji.EmojiBean;
 import com.tentcoo.jgchat.R;
@@ -59,11 +59,13 @@ import com.tentcoo.jgchat.view.TipItem;
 import com.tentcoo.jgchat.view.TipView;
 import com.tentcoo.jgchat.view.listview.DropDownListView;
 
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
 import java.io.File;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
-
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -138,7 +140,7 @@ public class ChatActivity extends BaseActivity implements FuncLayout.OnFuncKeyBo
     private int mUnreadMsgCnt;
     private boolean mShowSoftInput = false;
     private List<UserInfo> forDel = new ArrayList<>();
-
+    SimpleAppsGridView gridView;
     Window mWindow;
     InputMethodManager mImm;
     private final UIHandler mUIHandler = new UIHandler(this);
@@ -164,6 +166,7 @@ public class ChatActivity extends BaseActivity implements FuncLayout.OnFuncKeyBo
         initView();
 
     }
+
 
     private void initData() {
         SimpleCommonUtils.initEmoticonsEditText(ekBar.getEtChat());
@@ -309,7 +312,7 @@ public class ChatActivity extends BaseActivity implements FuncLayout.OnFuncKeyBo
     private void initEmoticonsKeyBoardBar() {
         ekBar.setAdapter(SimpleCommonUtils.getCommonAdapter(this, emoticonClickListener));
         ekBar.addOnFuncKeyBoardListener(this);
-        SimpleAppsGridView gridView = new SimpleAppsGridView(this);
+       gridView = new SimpleAppsGridView(this);
         ekBar.addFuncView(gridView);
 
         ekBar.getEtChat().setOnSizeChangedListener(new EmoticonsEditText.OnSizeChangedListener() {
@@ -431,7 +434,7 @@ public class ChatActivity extends BaseActivity implements FuncLayout.OnFuncKeyBo
     EmoticonClickListener emoticonClickListener = new EmoticonClickListener() {
         @Override
         public void onEmoticonClick(Object o, int actionType, boolean isDelBtn) {
-
+             Log.e("backinfo","ssssssssssssssssssssss");
             if (isDelBtn) {
                 SimpleCommonUtils.delClick(ekBar.getEtChat());
             } else {
@@ -642,6 +645,7 @@ public class ChatActivity extends BaseActivity implements FuncLayout.OnFuncKeyBo
     }
 
     public void onEventMainThread(MessageRetractEvent event) {
+        Log.e("backifno","MessageRetractEvent");
         Message retractedMessage = event.getRetractedMessage();
         mChatAdapter.delMsgRetract(retractedMessage);
     }
@@ -910,6 +914,7 @@ public class ChatActivity extends BaseActivity implements FuncLayout.OnFuncKeyBo
      * 消息已读事件
      */
     public void onEventMainThread(MessageReceiptStatusChangeEvent event) {
+        Log.e("backifno","消息已读事件");
         List<MessageReceiptStatusChangeEvent.MessageReceiptMeta> messageReceiptMetas = event.getMessageReceiptMetas();
         for (MessageReceiptStatusChangeEvent.MessageReceiptMeta meta : messageReceiptMetas) {
             long serverMsgId = meta.getServerMsgId();
@@ -919,6 +924,7 @@ public class ChatActivity extends BaseActivity implements FuncLayout.OnFuncKeyBo
     }
 
     public void onEventMainThread(ImageEvent event) {
+        Log.e("backinfo","ImageEvent:");
         Intent intent;
         switch (event.getFlag()) {
             case JGApplication.IMAGE_MESSAGE:

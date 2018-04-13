@@ -30,7 +30,6 @@ import com.tentcoo.jgchat.view.RecordVoiceButton;
 
 import java.util.ArrayList;
 
-
 public class XhsEmoticonsKeyBoard extends AutoHeightLayout implements View.OnClickListener, EmoticonsFuncView.OnEmoticonsPageViewListener,
         EmoticonsToolBarView.OnToolBarItemClickListener, EmoticonsEditText.OnBackKeyClickListener, FuncLayout.OnFuncChangeListener {
 
@@ -103,7 +102,7 @@ public class XhsEmoticonsKeyBoard extends AutoHeightLayout implements View.OnCli
     }
 
     protected void initEditView() {
-        mEtChat.setOnTouchListener(new OnTouchListener() {
+        mEtChat.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 if (!mEtChat.isFocused()) {

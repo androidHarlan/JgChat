@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.tentcoo.jgchat.view.ChatView android:id="@+id/chat_view"
-                            xmlns:android="http://schemas.android.com/apk/res/android"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:fitsSystemWindows="true"
-                            android:orientation="vertical">
+<com.tentcoo.jgchat.view.ChatView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/chat_view"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
 
 
     <com.tentcoo.jgchat.utils.keyboard.XhsEmoticonsKeyBoard
@@ -29,7 +29,7 @@
                     android:layout_width="@dimen/title_bar_height"
                     android:layout_height="match_parent"
                     android:background="@drawable/jmui_back_btn_bg"
-                    android:src="@drawable/back"/>
+                    android:src="@drawable/back" />
 
 
                 <LinearLayout
@@ -47,7 +47,7 @@
                         android:singleLine="true"
                         android:text="昵称"
                         android:textColor="#FFFFFF"
-                        android:textSize="18sp"/>
+                        android:textSize="18sp" />
 
                     <TextView
                         android:id="@+id/jmui_group_num_tv"
@@ -55,7 +55,7 @@
                         android:layout_height="wrap_content"
                         android:singleLine="true"
                         android:textColor="#FFFFFF"
-                        android:textSize="20sp"/>
+                        android:textSize="20sp" />
 
                 </LinearLayout>
 
@@ -65,7 +65,7 @@
                     android:layout_height="match_parent"
                     android:layout_alignParentRight="true"
                     android:background="@drawable/jmui_back_btn_bg"
-                    android:src="@drawable/jmui_chat_detail"/>
+                    android:src="@drawable/jmui_chat_detail" />
             </RelativeLayout>
 
             <FrameLayout
@@ -73,10 +73,10 @@
                 android:layout_height="match_parent">
 
                 <com.tentcoo.jgchat.view.listview.DropDownListView
-                    android:background="#E8EDF3"
                     android:id="@+id/lv_chat"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:background="#E8EDF3"
                     android:cacheColorHint="#00000000"
                     android:divider="@null"
                     android:fadingEdge="none"
@@ -85,7 +85,7 @@
                     android:scrollbarStyle="outsideOverlay"
                     android:scrollingCache="false"
                     android:smoothScrollbar="true"
-                    android:transcriptMode="normal"/>
+                    android:transcriptMode="normal" />
 
                 <Button
                     android:id="@+id/jmui_at_me_btn"
@@ -97,7 +97,7 @@
                     android:background="#2DD0CF"
                     android:text="有人@我"
                     android:textColor="#fff"
-                    android:visibility="gone"/>
+                    android:visibility="gone" />
             </FrameLayout>
         </LinearLayout>
 

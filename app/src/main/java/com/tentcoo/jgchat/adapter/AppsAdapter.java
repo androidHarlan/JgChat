@@ -2,21 +2,26 @@ package com.tentcoo.jgchat.adapter;
 
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.gson.Gson;
 import com.tentcoo.jgchat.R;
+
 import com.tentcoo.jgchat.application.JGApplication;
 import com.tentcoo.jgchat.model.AppBean;
 import com.tentcoo.jgchat.utils.event.ImageEvent;
 
-import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
+
+import cn.jpush.im.android.eventbus.EventBus;
 
 public class AppsAdapter extends BaseAdapter {
 
@@ -67,19 +72,22 @@ public class AppsAdapter extends BaseAdapter {
             convertView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+
                     if (appBean.getFuncName().equals("图片")) {
+                        Log.e("backinfo", "进入图片");
                         EventBus.getDefault().post(new ImageEvent(JGApplication.IMAGE_MESSAGE));
+                        // EventBus.getDefault().post(1);
                     } else if (appBean.getFuncName().equals("拍摄")) {
                         EventBus.getDefault().post(new ImageEvent(JGApplication.TAKE_PHOTO_MESSAGE));
-                    }else if (appBean.getFuncName().equals("位置")) {
+                    } else if (appBean.getFuncName().equals("位置")) {
                         EventBus.getDefault().post(new ImageEvent(JGApplication.TAKE_LOCATION));
-                    }else if (appBean.getFuncName().equals("文件")) {
+                    } else if (appBean.getFuncName().equals("文件")) {
                         EventBus.getDefault().post(new ImageEvent(JGApplication.FILE_MESSAGE));
-                    }else if (appBean.getFuncName().equals("视频")) {
+                    } else if (appBean.getFuncName().equals("视频")) {
                         EventBus.getDefault().post(new ImageEvent(JGApplication.TACK_VIDEO));
-                    }else if (appBean.getFuncName().equals("语音")) {
+                    } else if (appBean.getFuncName().equals("语音")) {
                         EventBus.getDefault().post(new ImageEvent(JGApplication.TACK_VOICE));
-                    }else if (appBean.getFuncName().equals("名片")) {
+                    } else if (appBean.getFuncName().equals("名片")) {
                         EventBus.getDefault().post(new ImageEvent(JGApplication.BUSINESS_CARD));
                     }
                 }

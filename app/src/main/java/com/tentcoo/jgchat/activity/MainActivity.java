@@ -51,8 +51,8 @@ public class MainActivity extends FragmentActivity {
         super.onDestroy();
     }
 
-    @Override
+  /*  @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         return keyCode == KeyEvent.KEYCODE_BACK;
-    }
+    }*/
 }
